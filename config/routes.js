@@ -21,8 +21,6 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
   '/devices' : { view : 'pages/devices'},
-  '/login' : { view : 'pages/login'},
-  '/register': {view: 'pages/register'},
   '/networkstatus': {view: 'pages/networkstatus'}
 
 
