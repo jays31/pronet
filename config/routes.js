@@ -21,7 +21,8 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
   '/device' : { view : 'pages/devices'},
-  '/networkstatus': {view: 'pages/networkstatus'}
+  '/networkstatus': {view: 'pages/networkstatus'},
+  '/UserController/createRegisterUserRequest': 'UserController.createRegisterUserRequest'
 
 
   /***************************************************************************
