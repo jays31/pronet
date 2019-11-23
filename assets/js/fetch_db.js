@@ -85,3 +85,46 @@ function fetch_deviceband(grid) {
     var deviceband = parsetdata[0].deviceband;
     return (deviceband)
 }
+function fetch_nwband(grid) {
+    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", geturl, false); // false for synchronous request
+    xmlHttp.send(null);
+    var tdata = xmlHttp.responseText;
+    var parsetdata = $.parseJSON(tdata);
+    var total =0;
+    for(var i=0;i<parsetdata.length;i++)
+    {
+        var deviceband = parsetdata[i].deviceband;
+        total += Number(deviceband);
+    }
+    return (total.toFixed(2))
+}
+function fetch_traffic(grid) {
+    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", geturl, false); // false for synchronous request
+    xmlHttp.send(null);
+    var tdata = xmlHttp.responseText;
+    var parsetdata = $.parseJSON(tdata);
+    var count =0;
+    for(var i=0;i<parsetdata.length;i++)
+    {
+        var status = parsetdata[i].status;
+        if(status=="Active")
+        {
+            count+=1;
+        }
+    }
+    return (count)
+}
+function fetch_totaldevices(grid) {
+    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", geturl, false); // false for synchronous request
+    xmlHttp.send(null);
+    var tdata = xmlHttp.responseText;
+    var parsetdata = $.parseJSON(tdata);
+    var count =parsetdata.length;
+    return (count)
+}
