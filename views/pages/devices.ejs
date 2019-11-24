@@ -3,7 +3,68 @@
 <head>
 </head>
 <style>
+.fa-power-off{
+    font-size: 3em;
+}
 
+.card{
+    background:  #343a40;
+    color: floralwhite;
+}
+.cardlist{
+    background: #343a40;
+}
+
+
+.list-group-item.list-group-item-action.active{
+    background: #343a40;
+    border-color: #343a40;
+}
+.adddevice{
+        padding-left: 8px;
+    margin-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 5px;
+    padding-right: 8px;
+}
+.values{
+    float: right;
+}
+
+.fa-trash{
+    margin-top: 5px;
+    font-size: medium;
+    float: right;
+}
+.reddot {
+  height: 25px;
+  width: 25px;
+  background-color: #d9534f;
+  border-radius: 50%;
+  display: inline-block;
+  float: right;
+}
+.greendot {
+  height: 25px;
+  width: 25px;
+  background-color: #5cb85c;
+  border-radius: 50%;
+  display: inline-block;
+  float: right;
+}
+
+.yellowdot {
+  height: 25px;
+  width: 25px;
+  background-color: #f0ad4e;
+  border-radius: 50%;
+  display: inline-block;
+  float: right;
+}
+.badge{
+float: right
+}
 </style>
  <script src="js/fetch_db.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -34,28 +95,22 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Statistics</a>
           </div>
-        </li>
-        <li class="nav-item">
-          
-           <button class="btn btn-outline-light adddevice" data-toggle="modal" data-target="#adddeviceModal"><i class="fas fa-plus"></i></button>
-        </li>
-        
-          
+        </li>      
       </ul>
     </div>
     <!-- Start for code to add login and register feature-->
+
     <form class="form-inline my-2 my-lg-0 navbar-nav">
       <button type="button" class="btn btn-warning">Logout</button>     
-      
     </form>    
     <!-- End for code to add login and register feature-->
   </nav>
-
-  <br><br>
+  <div class="float-right m-4">
+      <button class="btn btn-outline-dark adddevice" data-toggle="modal" data-target="#adddeviceModal"><i class="fas fa-plus"></i> Add Device</button>
+  </div>
   <div class="row">
-      <div class="col-2">
-      </div>
-  <div class="col-4">
+      <div class="col-sm-2"></div>
+  <div class="col-sm-4 m-4">
     <div class="list-group" id="list-tab" role="tablist">
        <script>
                  var devices = fetch_alldevices();
@@ -64,44 +119,39 @@
                     var obj = JSON.parse(JSON.stringify(devices[i]));
                     if(i== 0){
                          if(obj.status =="Active"){
-                     document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"> Device '+obj.id+'<span class="greendot"></span></a>');
+                     document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-success badge-pill">Active</span></a>');
                    }
                     if(obj.status == "Stopped"){
-                         document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"> Device '+obj.id+'<span class="yellowdot"></span></a>');
+                         document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
                    }
                     if(obj.status == "Disabled"){
-                      document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"> Device '+obj.id+'<span class="reddot"></span></a>');
+                      document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-secondary badge-pill">Disabled</span></a>');
                     }
                     }
                     else{
                     if(obj.status =="Active"){
-                     document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"> Device '+obj.id+'<span class="greendot"></span></a>');
+                     document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-success badge-pill">Active</span></a>');
                    }
                     if(obj.status == "Stopped"){
-                         document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"> Device '+obj.id+'<span class="yellowdot"></span></a>');
+                         document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
                    }
                     if(obj.status == "Disabled"){
-                      document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"> Device '+obj.id+'<span class="reddot"></span></a>');
+                      document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-secondary badge-pill">Disabled</span></a>');
                     }
-                    }
-                    
-                      
-              }
-                                    
-                     
+                  }       
+              }          
             </script>
       </div>
   </div>
-    <div class="col-6">
+    <div class="col-sm-4">
       <div class="tab-content" id="nav-tabContent">
-      
       <script>
            var devices = fetch_alldevices();
             for (i = 0; i < devices.length; i++) {
                     var obj = JSON.parse(JSON.stringify(devices[i]));
                     if( i == 0){
                 document.write('<div class="tab-pane fade show active" id="device'+obj.id+'" role="tabpanel" aria-labelledby="device'+obj.id+'-list">');
-                  document.write('<div class="card" style="width: 19rem;margin-left: 10em; margin-top: 2em;">');
+                  document.write('<div class="card m-4" style="width: 20rem;">');
                   document.write('<div class="card-body">');
                   document.write('<h5 class="card-title">Device #'+obj.id+'<span><i class="fa fa-trash" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i></span></h5>');
                   document.write('</div>'); 
@@ -124,7 +174,7 @@
                     }
                     else{
                       document.write('<div class="tab-pane fade show" id="device'+obj.id+'" role="tabpanel" aria-labelledby="device'+obj.id+'-list">');
-        document.write('<div class="card" style="width: 19rem;margin-left: 10em; margin-top: 2em;">');
+        document.write('<div class="card m-4" style="width: 20rem;">');
         document.write('<div class="card-body">');
         document.write('<h5 class="card-title">Device #'+obj.id+'<span><i class="fa fa-trash" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i></span></h5>');
         document.write('</div>'); 
