@@ -76,6 +76,7 @@ function fetch_nwname(grid) {
 }
 
 function fetch_deviceband(grid) {
+    console.log("entered");
     var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
@@ -83,16 +84,11 @@ function fetch_deviceband(grid) {
     var tdata = xmlHttp.responseText;
     var parsetdata = $.parseJSON(tdata);
     var deviceband = parsetdata[0].deviceband;
+    console.log(parsetdata);
     return (deviceband)
 }
 function fetch_nwband(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", geturl, false); // false for synchronous request
-    xmlHttp.send(null);
-    var tdata = xmlHttp.responseText;
-    var parsetdata = $.parseJSON(tdata);
-    var total =0;
+    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;var total =0;
     for(var i=0;i<parsetdata.length;i++)
     {
         var deviceband = parsetdata[i].deviceband;
@@ -127,4 +123,36 @@ function fetch_totaldevices(grid) {
     var parsetdata = $.parseJSON(tdata);
     var count =parsetdata.length;
     return (count)
+}
+
+function fetch_alldevices() {
+    
+    var geturl = "http://localhost:1337/devices";
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", geturl, false); // false for synchronous request
+    xmlHttp.send(null);
+    var tdata = xmlHttp.responseText;
+    var parsetdata = $.parseJSON(tdata);
+    console.log(parsetdata);
+    return (parsetdata)
+}
+
+function add_device(){
+   var deviceName =  document.getElementById("devicename").value;
+   var network = document.getElementById("network").value;
+   var ipaddr = document.getElementById("ipaddr").value;
+   var macaddr = document.getElementById("macaddr").value;
+   var location = document.getElementById("location").value;
+   var locarr = location.split(',');
+   var url = "http://localhost:1337/devices";
+   var xmlHttp = new XMLHttpRequest();
+   xmlHttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(xmlHttp.responseText);
+      document.location.reload(true)
+    }
+  };
+   xmlHttp.open("POST", url, true);
+   xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   xmlHttp.send("id="+deviceName+"&ipadd="+ipaddr+"&macadd="+macaddr+"&lati="+locarr[0]+"&longi="+locarr[1]+"&clients=0&status=Active&nwname="+network+"&deviceband=6.29");
 }
