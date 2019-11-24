@@ -89,6 +89,14 @@ function fetch_deviceband(grid) {
 }
 function fetch_nwband(grid) {
     var geturl = "http://localhost:1337/devices?nwname=grid" + grid;var total =0;
+    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", geturl, false); // false for synchronous request
+    xmlHttp.send(null);
+    var tdata = xmlHttp.responseText;
+    var parsetdata = $.parseJSON(tdata);
+    var total =0;
+
     for(var i=0;i<parsetdata.length;i++)
     {
         var deviceband = parsetdata[i].deviceband;
