@@ -69,42 +69,27 @@ float: right
  <script src="js/fetch_db.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-    <a class="navbar-brand" href="/">ProNet</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-
-        <li class="nav-item">
-          <a class="nav-link" href="networkstatus">Network Status</a>
-        </li>
-
-       
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Geocoding
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Maps</a>
-            <a class="dropdown-item" href="#">Latitude and Longitude</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Statistics</a>
-          </div>
-        </li>      
-      </ul>
-    </div>
-    <!-- Start for code to add login and register feature-->
-
-    <form class="form-inline my-2 my-lg-0 navbar-nav">
-      <button type="button" class="btn btn-warning">Logout</button>     
-    </form>    
-    <!-- End for code to add login and register feature-->
-  </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+        <a class="navbar-brand" href="/">ProNet</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="networkstatus">Network Status</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="device">Devices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Geocoding</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  
   <div class="float-right m-4">
       <button class="btn btn-outline-dark adddevice" data-toggle="modal" data-target="#adddeviceModal"><i class="fas fa-plus"></i> Add Device</button>
   </div>
