@@ -144,6 +144,10 @@ function fetch_alldevices() {
     return (parsetdata)
 }
 
+function popup(x,y){
+    return [x, y];
+}
+
 function add_device(){
    var deviceName =  document.getElementById("devicename").value;
    var network = document.getElementById("network").value;
