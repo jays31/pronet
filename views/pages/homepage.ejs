@@ -8,17 +8,20 @@
   <script type="text/javascript">
     $(document).ready(function () {
       $("#registerSubmit").click(function () {
-        var username = $("#registerEmail").val();
-        var password = $("#registerPassword").val();
-        var organizationName = $("#organizationName").val();
+      var username = $("#registerEmail").val();
+      var password = $("#registerPassword").val();
+      var organizationName = $("#organizationName").val();
 
-        var postURL =
-          "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
-          "&userOrganizationName=" + organizationName;
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", postURL, false);
-        xmlHttp.send(null);
-        alert("Registration Successful");
+      var postURL =
+      "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
+      "&userOrganizationName=" + organizationName;
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("POST", postURL, false);
+      xmlHttp.send(null);
+      $("#registerModal").remove();
+      $('.modal-backdrop').remove();
+      document.getElementById("registerDialog").style.visibility = "hidden";
+      alert("Registration Successful");
       });
 
       $("#loginSubmit").click(function () {
@@ -77,9 +80,9 @@
       </ul>
     </div>
     <!-- Start for code to add login and register feature-->
-    <form class="form-inline my-2 my-lg-0 navbar-nav" id="loginRegForm">
-      <a class="nav-link" data-toggle="modal" id="loginDialog" href="#loginModal">Login</a>
+    <form class="form-inline my-2 my-lg-0 navbar-nav" id="loginRegForm">  
       <a class="nav-link" data-toggle="modal" id="registerDialog" href="#registerModal">Register</a>
+      <a class="nav-link" data-toggle="modal" id="loginDialog" href="#loginModal">Login</a>
       <label id="userNameLabel" style="display: none;">Test</label>
     </form>
     <!-- End for code to add login and register feature-->
