@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/fetch_db.js"></script>
+
+    <!-- From Tutorial 2 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwv5JTuqQnKO-3eHRGNXcbUOxmuh6KsRA"></script> -->
+
+    <style>
+        .card {
+            background: #343a40;
+            color: rgb(255, 255, 255);
+        }
+
+        .cardlist {
+            background: #242525;
+        }
+
+        .values {
+            float: right;
+        }
+
+        iframe:focus {
+            outline: none;
+        }
+
+        iframe[seamless] {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+        <a class="navbar-brand" href="/">ProNet</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/networkstatus">Network Status</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/device">Devices</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/geocoding">Geocoding</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <script>
+                var devices = fetch_alldevices();
+                for (i = 0; i < devices.length; i++) {
+                    var obj = JSON.parse(JSON.stringify(devices[i])); {
+                        document.write('<div class="tab-pane fade show" id="device' + obj.id + '" role="tabpanel" aria-labelledby="device' + obj.id + '-list">');
+                        document.write('<div class="card m-4" style="width: 20rem;">');
+                        document.write('<div class="card-body">');
+                        document.write('<h7 class="card-title">Device ' + obj.id + '</h7><br>');
+                        document.write('</div>');
+                        document.write(' <li class="list-group-item cardlist">Location<span class="values">' + obj.lati + ", " + obj.longi + ' </span></br>');
+                        document.write('<br><center><button onclick="popup(' + obj.lati + ', ' + obj.longi + ')" type="button" class="btn btn-primary mr-sm-2 mb-sm-2">' + 'See on Map' + '</button></center></li>');
+                        document.write('</div>');
+                        document.write('</div>');
+                    }
+                }
+            </script>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6">
+            <br>
+            <div class="row">
+                <iframe width="700" height="600" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJpTvG15DL1IkRd8S0KlBVNTI&key=AIzaSyDwv5JTuqQnKO-3eHRGNXcbUOxmuh6KsRA"
+                    allowfullscreen></iframe>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

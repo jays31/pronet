@@ -133,8 +133,7 @@ function fetch_totaldevices(grid) {
     return (count)
 }
 
-function fetch_alldevices() {
-    
+function fetch_alldevices() {    
     var geturl = "http://localhost:1337/devices";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request

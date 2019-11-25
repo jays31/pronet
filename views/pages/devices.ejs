@@ -1,11 +1,11 @@
 <html>
+  <head>
 
-<head>
-</head>
-<style>
-.fa-power-off{
+  </head>
+  <style>
+  .fa-power-off{
     font-size: 3em;
-}
+  }
 
 .card{
     background:  #343a40;
@@ -78,13 +78,13 @@ float: right
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="networkstatus">Network Status</a>
+              <a class="nav-link" href="/networkstatus">Network Status</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="device">Devices</a>
+              <a class="nav-link" href="/device">Devices</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Geocoding</a>
+              <a class="nav-link" href="/geocoding">Geocoding</a>
             </li>
           </ul>
         </div>
@@ -107,7 +107,7 @@ float: right
                      document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-success badge-pill">Active</span></a>');
                    }
                     if(obj.status == "Stopped"){
-                         document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
+                      document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
                    }
                     if(obj.status == "Disabled"){
                       document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-secondary badge-pill">Disabled</span></a>');
@@ -118,7 +118,7 @@ float: right
                      document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-success badge-pill">Active</span></a>');
                    }
                     if(obj.status == "Stopped"){
-                         document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
+                      document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
                    }
                     if(obj.status == "Disabled"){
                       document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-secondary badge-pill">Disabled</span></a>');

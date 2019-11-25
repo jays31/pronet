@@ -1,96 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-      <script type="text/javascript">
-        $(document).ready(function () {
-          $("#registerSubmit").click(function () {
-            var username = $("#registerEmail").val();
-            var password = $("#registerPassword").val();
-            var organizationName = $("#organizationName").val();
 
-            var postURL =
-              "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
-              "&userOrganizationName=" + organizationName;
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("POST", postURL, false);
-            xmlHttp.send(null);
-            alert("Registration Successful");
-          });
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#registerSubmit").click(function () {
+        var username = $("#registerEmail").val();
+        var password = $("#registerPassword").val();
+        var organizationName = $("#organizationName").val();
 
-          $("#loginSubmit").click(function () {
-            var loginUserName = $("#loginEmail").val();
-            var loginPassword = $("#loginPassword").val();
-            var organizationName = $("#organizationName").val();
+        var postURL =
+          "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
+          "&userOrganizationName=" + organizationName;
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", postURL, false);
+        xmlHttp.send(null);
+        alert("Registration Successful");
+      });
 
-            var getURL =
-              "http://localhost:1337/user/find?userEmail=" + loginUserName + "&&userPassword=" + loginPassword;
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", getURL, false);
-            xmlHttp.send(null);
-            var loginData = xmlHttp.responseText;
+      $("#loginSubmit").click(function () {
+        var loginUserName = $("#loginEmail").val();
+        var loginPassword = $("#loginPassword").val();
+        var organizationName = $("#organizationName").val();
 
-            if (null != loginData && loginData.length > 0) {
-              var parsedLoginData = $.parseJSON(loginData);
-              if (null != parsedLoginData && parsedLoginData.length > 0) {
-                alert("User logged in successfully");
-                document.getElementById("loginDialog").style.visibility = "hidden";
-                document.getElementById("registerDialog").style.visibility = "hidden";
-                $("#loginModal").remove();
-                $('.modal-backdrop').remove();
-                document.getElementById("userNameLabel").innerHTML = parsedLoginData[0].userEmail;
-                document.getElementById("userNameLabel").style.color = "white";
-                document.getElementById("userNameLabel").style.display = "block";
-              } else {
-                alert("Invalid Login");
-              }
-            } else {
-              alert("Invalid Login");
-            }
+        var getURL =
+          "http://localhost:1337/user/find?userEmail=" + loginUserName + "&&userPassword=" + loginPassword;
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", getURL, false);
+        xmlHttp.send(null);
+        var loginData = xmlHttp.responseText;
 
-          });
-        });
-      </script>
-    </head>
+        if (null != loginData && loginData.length > 0) {
+          var parsedLoginData = $.parseJSON(loginData);
+          if (null != parsedLoginData && parsedLoginData.length > 0) {
+            alert("User logged in successfully");
+            document.getElementById("loginDialog").style.visibility = "hidden";
+            document.getElementById("registerDialog").style.visibility = "hidden";
+            $("#loginModal").remove();
+            $('.modal-backdrop').remove();
+            document.getElementById("userNameLabel").innerHTML = parsedLoginData[0].userEmail;
+            document.getElementById("userNameLabel").style.color = "white";
+            document.getElementById("userNameLabel").style.display = "block";
+          } else {
+            alert("Invalid Login");
+          }
+        } else {
+          alert("Invalid Login");
+        }
+
+      });
+    });
+  </script>
+</head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <a class="navbar-brand" href="/">ProNet</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="networkstatus">Network Status</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="device">Devices</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="networkstatus">Geocoding</a>
-            </li>
-          </ul>
-        </div>
-        <!-- Start for code to add login and register feature-->
-        <form class="form-inline my-2 my-lg-0 navbar-nav" id="loginRegForm">
-          <a class="nav-link" data-toggle="modal" id="loginDialog" href="#loginModal">Login</a>
-          <a class="nav-link" data-toggle="modal" id="registerDialog" href="#registerModal">Register</a>
-          <label id="userNameLabel" style="display: none;">Test</label>
-        </form>
-        <!-- End for code to add login and register feature-->
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+    <a class="navbar-brand" href="/">ProNet</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/networkstatus">Network Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/device">Devices</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/geocoding">Geocoding</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Start for code to add login and register feature-->
+    <form class="form-inline my-2 my-lg-0 navbar-nav" id="loginRegForm">
+      <a class="nav-link" data-toggle="modal" id="loginDialog" href="#loginModal">Login</a>
+      <a class="nav-link" data-toggle="modal" id="registerDialog" href="#registerModal">Register</a>
+      <label id="userNameLabel" style="display: none;">Test</label>
+    </form>
+    <!-- End for code to add login and register feature-->
+  </nav>
   <br><br>
 
   <div class="row">
     <div class="col-sm-4">
       <center>
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://cdn4.iconfinder.com/data/icons/seo-communication/512/cloud_network-512.png"
+          <img class="card-img-top"
+            src="https://cdn4.iconfinder.com/data/icons/seo-communication/512/cloud_network-512.png"
             alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Network Status</h5>
@@ -103,11 +104,13 @@
     <div class="col-sm-4">
       <center>
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://icon-library.net/images/connected-devices-icon/connected-devices-icon-17.jpg"
+          <img class="card-img-top"
+            src="https://icon-library.net/images/connected-devices-icon/connected-devices-icon-17.jpg"
             alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Devices</h5>
-            <p class="card-text">Configure the devices in your local grid. Add, remove, reboot, stop or start devices in your grid</p>
+            <p class="card-text">Configure the devices in your local grid. Add, remove, reboot, stop or start devices in
+              your grid</p>
             <a href="device" class="btn btn-primary">Launch ProNet+</a>
           </div>
         </div>
@@ -116,11 +119,13 @@
     <div class="col-sm-4">
       <center>
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://cdn1.iconfinder.com/data/icons/map-and-navigation-31/64/89-512.png" alt="Card image cap">
+          <img class="card-img-top" src="https://cdn1.iconfinder.com/data/icons/map-and-navigation-31/64/89-512.png"
+            alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Geocoding</h5>
-            <p class="card-text">See your devices located on the map. Find your device's remote coordinates and coverage radius</p>
-            <a href="#" class="btn btn-primary">Open GeoMaps</a>
+            <p class="card-text">See your devices located on the map. Find your device's remote coordinates and coverage
+              radius</p>
+            <a href="/geocoding" class="btn btn-primary">Open GeoMaps</a>
           </div>
         </div>
       </center>
@@ -137,7 +142,8 @@
   </footer>
 
   <!-- Start for code to create login modal-->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -147,14 +153,13 @@
           </button>
         </div>
         <div class="modal-body">
-        <div class="input-group">
-          <input type="email" id="loginEmail" placeholder="Enter email" class="form-control" required />
-        </div><br>
+          <div class="input-group">
+            <input type="email" id="loginEmail" placeholder="Enter email" class="form-control" required />
+          </div><br>
 
-        <div class="input-group">
-          <input type="password" id="loginPassword" placeholder="Password" class="form-control"
-            required />
-        </div>
+          <div class="input-group">
+            <input type="password" id="loginPassword" placeholder="Password" class="form-control" required />
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -166,7 +171,8 @@
   <!-- End for code to create login modal-->
 
   <!-- Start for code to create register modal-->
-  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -176,16 +182,16 @@
           </button>
         </div>
         <div class="modal-body">
-        <div class="input-group">
-          <input type="email" id="registerEmail" placeholder="Enter email" class="form-control" required />
-        </div><br>
+          <div class="input-group">
+            <input type="email" id="registerEmail" placeholder="Enter email" class="form-control" required />
+          </div><br>
 
-        <div class="input-group">
-          <input type="text" id="organizationName" placeholder="Organization Name" class="form-control" required />
-        </div><br>
-        <div class="input-group">
-          <input type="password" id="registerPassword" placeholder="Password" class="form-control" required />
-        </div><br>
+          <div class="input-group">
+            <input type="text" id="organizationName" placeholder="Organization Name" class="form-control" required />
+          </div><br>
+          <div class="input-group">
+            <input type="password" id="registerPassword" placeholder="Password" class="form-control" required />
+          </div><br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
