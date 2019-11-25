@@ -165,5 +165,5 @@ function add_device(){
   };
    xmlHttp.open("POST", url, true);
    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-   xmlHttp.send("id="+deviceName+"&ipadd="+ipaddr+"&macadd="+macaddr+"&lati="+locarr[0]+"&longi="+locarr[1]+"&clients=0&status=Active&nwname="+network+"&deviceband=6.29");
+   xmlHttp.send("ipadd="+ipaddr+"&macadd="+macaddr+"&lati="+locarr[0]+"&longi="+locarr[1]+"&clients=0&status=Disabled&nwname="+network+"&deviceband=0");
 }
