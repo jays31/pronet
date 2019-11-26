@@ -5,58 +5,82 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="js/fetch_db.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var userName = sessionStorage.getItem("userName");
+      document.getElementById("userNameLabel").innerHTML = userName;
+      document.getElementById("userNameLabel").style.color = "white";
+      document.getElementById("userNameLabel").style.display = "block";
+    });
+  </script>
+
 </head>
+
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <a class="navbar-brand" href="/">ProNet</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/networkstatus">Network Status</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/device">Devices</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/geocoding">Geocoding</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+    <a class="navbar-brand" href="/">ProNet</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/networkstatus">Network Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/device">Devices</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/geocoding">Geocoding</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Start for code to add username for session management-->
+    <form class="form-inline my-2 my-lg-0 navbar-nav">
+      <label id="userNameLabel" style="display: none;"></label>
+    </form>
+    <!-- End for code to add username for session management-->
+  </nav>
   <div class="row">
     <div class="col-sm-5">
-        <div class="m-4">
-            <h4 class="card-title">List of Networks</h4>
-            <div id="accordion">
-            <script>
-              for (i = 1; i <= 3; i++) {
-                  document.write('<div class="card" style="width: 30rem;">');
-                    document.write('<center><div class="card-header" id="net"'+i+'">');
-                      document.write('<h7 class="mb-0">Network ' + i);
-                      document.write('<button class="btn btn-link" data-toggle="collapse" data-target="#expandnet"'+i+'" aria-expanded="true" aria-controls="expandnet"'+i+'">');
-                      document.write('<span class="badge badge-secondary badge-pill">More</span></button></h7></div></center>')
-                    document.write('<div id="expandnet"'+i+'" class="collapse" aria-labelledby="net"'+i+'" data-parent="#accordion">');
-                      document.write('<div class="card-body m-4">');
-                        document.write('<div><h7 class="card-title text-right"><b>Bandwidth:</h7>&nbsp;<h7 class="text-right">' + fetch_nwband(i) + '</b></h7></div>');
-                        document.write('<div><h7 class="card-title text-right"><b>Traffic:</h7>&nbsp;<h7 class="text-right">' + fetch_traffic(i) + '</b></h7></div>');
-                        document.write('<div><h7 class="card-title text-right"><b>Total Devices:</h7>&nbsp;<h7 class="text-right">' + fetch_totaldevices(i) + '</b></h7></div>');
-                        document.write('<a href=device><h7 class="card-title text-right"><b>Recent Device Activity</b></h7></a>');
-                      document.write('</div>');
-                    document.write('</div>');
-                  document.write('</div>');
-              }
-            </script>
-          </div>
+      <div class="m-4">
+        <h4 class="card-title">List of Networks</h4>
+        <div id="accordion">
+          <script>
+            for (i = 1; i <= 3; i++) {
+              document.write('<div class="card" style="width: 30rem;">');
+              document.write('<center><div class="card-header" id="net"' + i + '">');
+              document.write('<h7 class="mb-0">Network ' + i);
+              document.write('<button class="btn btn-link" data-toggle="collapse" data-target="#expandnet"' + i +
+                '" aria-expanded="true" aria-controls="expandnet"' + i + '">');
+              document.write('<span class="badge badge-secondary badge-pill">More</span></button></h7></div></center>')
+              document.write('<div id="expandnet"' + i + '" class="collapse" aria-labelledby="net"' + i +
+                '" data-parent="#accordion">');
+              document.write('<div class="card-body m-4">');
+              document.write('<div><h7 class="card-title text-right"><b>Bandwidth:</h7>&nbsp;<h7 class="text-right">' +
+                fetch_nwband(i) + '</b></h7></div>');
+              document.write('<div><h7 class="card-title text-right"><b>Traffic:</h7>&nbsp;<h7 class="text-right">' +
+                fetch_traffic(i) + '</b></h7></div>');
+              document.write(
+                '<div><h7 class="card-title text-right"><b>Total Devices:</h7>&nbsp;<h7 class="text-right">' +
+                fetch_totaldevices(i) + '</b></h7></div>');
+              document.write('<a href=device><h7 class="card-title text-right"><b>Recent Device Activity</b></h7></a>');
+              document.write('</div>');
+              document.write('</div>');
+              document.write('</div>');
+            }
+
+          </script>
+        </div>
       </div>
     </div>
     <div class="col-sm-6">
       <img src="/images/networkImg1.png" class="img-fluid" alt="Responsive image">
     </div>
-</div>
+  </div>
 
 </body>
 </head>

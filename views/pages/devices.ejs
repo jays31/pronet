@@ -1,6 +1,14 @@
 <html>
   <head>
-
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          var userName = sessionStorage.getItem("userName");
+          document.getElementById("userNameLabel").innerHTML = userName;
+          document.getElementById("userNameLabel").style.color = "white";
+          document.getElementById("userNameLabel").style.display = "block";
+        });
+      </script>
   </head>
   <style>
   .fa-power-off{
@@ -88,6 +96,11 @@ float: right
             </li>
           </ul>
         </div>
+        <!-- Start for code to add username for session management-->
+        <form class="form-inline my-2 my-lg-0 navbar-nav">
+          <label id="userNameLabel" style="display: none;"></label>
+        </form>
+        <!-- End for code to add username for session management-->
       </nav>
   
   <div class="float-right m-4">

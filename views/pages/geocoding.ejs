@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwv5JTuqQnKO-3eHRGNXcbUOxmuh6KsRA"></script> -->
 
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var userName = sessionStorage.getItem("userName");
+        document.getElementById("userNameLabel").innerHTML = userName;
+        document.getElementById("userNameLabel").style.color = "white";
+        document.getElementById("userNameLabel").style.display = "block";
+      });
+    </script>
     <style>
         /* Set the size of the div element that contains the map */
         #map {
@@ -63,6 +71,11 @@
                 </li>
             </ul>
         </div>
+        <!-- Start for code to add username for session management-->
+        <form class="form-inline my-2 my-lg-0 navbar-nav">
+          <label id="userNameLabel" style="display: none;"></label>
+        </form>
+        <!-- End for code to add username for session management-->
     </nav>
     <div class="row">
         <div class="col-sm-1"></div>
