@@ -5,23 +5,44 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<style type="text/css">
+		#success{background: green;}
+		#error{background: red;}
+	</style>
+
   <script type="text/javascript">
     $(document).ready(function () {
+      toastr.options = {
+        'closeButton': true,
+        'positionClass': 'toast-top-right',
+        'preventDuplicates': true,
+        'showDuration': '1000',
+        'hideDuration': '1000',
+        'timeOut': '2000',
+        'extendedTimeOut': '1000',
+        'showEasing': 'swing',
+        'hideEasing': 'linear',
+        'showMethod': 'fadeIn',
+        'hideMethod': 'fadeOut',
+      }
+      
       $("#registerSubmit").click(function () {
-      var username = $("#registerEmail").val();
-      var password = $("#registerPassword").val();
-      var organizationName = $("#organizationName").val();
+        var username = $("#registerEmail").val();
+        var password = $("#registerPassword").val();
+        var organizationName = $("#organizationName").val();
 
-      var postURL =
-      "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
-      "&userOrganizationName=" + organizationName;
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.open("POST", postURL, false);
-      xmlHttp.send(null);
-      $("#registerModal").remove();
-      $('.modal-backdrop').remove();
-      document.getElementById("registerDialog").style.visibility = "hidden";
-      alert("Registration Successful");
+        var postURL =
+          "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
+          "&userOrganizationName=" + organizationName;
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", postURL, false);
+        xmlHttp.send(null);
+        $("#registerModal").remove();
+        $('.modal-backdrop').remove();
+        document.getElementById("registerDialog").style.visibility = "hidden";
+        toastr.success("Registration Successful");
       });
 
       $("#loginSubmit").click(function () {
@@ -39,7 +60,6 @@
         if (null != loginData && loginData.length > 0) {
           var parsedLoginData = $.parseJSON(loginData);
           if (null != parsedLoginData && parsedLoginData.length > 0) {
-            alert("User logged in successfully");
             document.getElementById("loginDialog").style.visibility = "hidden";
             document.getElementById("registerDialog").style.visibility = "hidden";
             $("#loginModal").remove();
@@ -47,11 +67,12 @@
             document.getElementById("userNameLabel").innerHTML = parsedLoginData[0].userEmail;
             document.getElementById("userNameLabel").style.color = "white";
             document.getElementById("userNameLabel").style.display = "block";
+            toastr.success("User logged in successfully");
           } else {
-            alert("Invalid Login");
+            toastr.error("Invalid Login");
           }
         } else {
-          alert("Invalid Login");
+          toastr.error("Invalid Login");
         }
 
       });
