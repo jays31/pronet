@@ -9,22 +9,47 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="js/fetch_db.js"></script>
 
     <!-- From Tutorial 2 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwv5JTuqQnKO-3eHRGNXcbUOxmuh6KsRA"></script> -->
-
+    <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+    </script>
     <!-- Start for code to add username for session management-->
     <script type="text/javascript">
         $(document).ready(function () {
+
+            toastr.options = {
+            'closeButton': true,
+            'positionClass': 'toast-top-right',
+            'preventDuplicates': true,
+            'showDuration': '1000',
+            'hideDuration': '1000',
+            'timeOut': '2000',
+            'extendedTimeOut': '1000',
+            'showEasing': 'swing',
+            'hideEasing': 'linear',
+            'showMethod': 'fadeIn',
+            'hideMethod': 'fadeOut',
+            }
+
             var userName = sessionStorage.getItem("userName");
             document.getElementById("userNameLabel").innerHTML = userName;
             document.getElementById("userNameLabel").style.color = "white";
             document.getElementById("userNameLabel").style.display = "block";
+
+            $("#submitLogout").click(function () {
+                sessionStorage.removeItem("userName");
+                document.getElementById("userNameLabel").style.display = "none";
+                toastr.success("User loggged out successfully");
+                document.getElementById("navbarDropdown").disabled = true;
+            });
         });
     </script>
     <!-- End for code to add username for session management-->
@@ -73,7 +98,15 @@
         </div>
         <!-- Start for code to add username for session management-->
         <form class="form-inline my-2 my-lg-0 navbar-nav">
-            <label id="userNameLabel" style="display: none;"></label>
+          <label id="userNameLabel" style="display: none;"></label>
+          <li class="nav-item dropdown" id="navDropDown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
+              <a class="dropdown-item" id="submitLogout" href="#">Logout</a>
+            </div>
+          </li>
         </form>
         <!-- End for code to add username for session management-->
 
