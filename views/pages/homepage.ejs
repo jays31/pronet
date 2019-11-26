@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
@@ -22,6 +22,9 @@
 
   <script type="text/javascript">
     $(document).ready(function () {
+
+      document.getElementById("navbarDropdown").disabled = true;
+      
       toastr.options = {
         'closeButton': true,
         'positionClass': 'toast-top-right',
@@ -40,6 +43,8 @@
         var username = $("#registerEmail").val();
         var password = $("#registerPassword").val();
         var organizationName = $("#organizationName").val();
+        document.getElementById("navbarDropdown").disabled = false; 
+
 
         if (null == username || username == '' || null == password || password == '' || null ==
           organizationName ||
@@ -84,6 +89,8 @@
             document.getElementById("userNameLabel").innerHTML = parsedLoginData[0].userEmail;
             document.getElementById("userNameLabel").style.color = "white";
             document.getElementById("userNameLabel").style.display = "block";
+            document.getElementById("navbarDropdown").disabled = false; 
+
             // Start for storing the user email for session management
             sessionStorage.setItem("userName",parsedLoginData[0].userEmail);
             // End for storing the user email for session management
@@ -95,6 +102,19 @@
           toastr.error("Invalid Login");
         }
 
+      });
+
+      $("#submitLogout").click(function () {
+        sessionStorage.removeItem("userName");
+        document.getElementById("userNameLabel").style.display = "none";
+        toastr.success("User loggged out successfully");
+        document.getElementById("loginDialog").style.visibility="initial";
+        document.getElementById("registerDialog").style.visibility="initial";
+        $("#loginModal").add();
+        $('.modal-backdrop').add();
+        $("#registerModal").add();
+        $('.modal-backdrop').add();   
+        document.getElementById("navbarDropdown").disabled = true; 
       });
     });
 
@@ -125,7 +145,15 @@
     <form class="form-inline my-2 my-lg-0 navbar-nav" id="loginRegForm">
       <a class="nav-link" data-toggle="modal" id="registerDialog" href="#registerModal">Register</a>
       <a class="nav-link" data-toggle="modal" id="loginDialog" href="#loginModal">Login</a>
-      <label id="userNameLabel" style="display: none;">Test</label>
+      <label id="userNameLabel" style="display: none;"></label>
+      <li class="nav-item dropdown" id="navDropDown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
+          <a class="dropdown-item" id="submitLogout" href="#">Logout</a>
+        </div>
+      </li>
     </form>
     <!-- End for code to add login and register feature-->
   </nav>
