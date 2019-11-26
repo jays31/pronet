@@ -8,12 +8,6 @@
 <html>
 
 <head>
-    <style>
-        .image{
-      width: 75px;
-      height: 75px;
-    }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -26,12 +20,12 @@
 
     <!-- Start for code to add username for session management-->
     <script type="text/javascript">
-      $(document).ready(function () {
-        var userName = sessionStorage.getItem("userName");
-        document.getElementById("userNameLabel").innerHTML = userName;
-        document.getElementById("userNameLabel").style.color = "white";
-        document.getElementById("userNameLabel").style.display = "block";
-      });
+        $(document).ready(function () {
+            var userName = sessionStorage.getItem("userName");
+            document.getElementById("userNameLabel").innerHTML = userName;
+            document.getElementById("userNameLabel").style.color = "white";
+            document.getElementById("userNameLabel").style.display = "block";
+        });
     </script>
     <!-- End for code to add username for session management-->
 
@@ -43,22 +37,23 @@
             width: 100%;
             /* The width is the width of the web page */
         }
-
         .values {
             float: right;
             font-style: italic;
         }
-
         .btn-link {
             color: #203244;
+        }
+        .image {
+            width: 3rem;
         }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <a href="/"><img class="image" src="/images/pronet-logo.png" alt="pronet logo" ></a>
-        <a class="navbar-brand" href="/">ProNet</a>
+        <a href="/"><img class="image" src="/images/pronet-logo.png" alt="pronet logo"></a>
+        <a class="navbar-brand" href="/">&ensp;ProNet</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -78,10 +73,10 @@
         </div>
         <!-- Start for code to add username for session management-->
         <form class="form-inline my-2 my-lg-0 navbar-nav">
-          <label id="userNameLabel" style="display: none;"></label>
+            <label id="userNameLabel" style="display: none;"></label>
         </form>
         <!-- End for code to add username for session management-->
-  
+
     </nav>
     <div class="row">
         <div class="col-sm-1"></div>

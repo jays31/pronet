@@ -17,18 +17,15 @@
     #error {
       background: red;
     }
-    .image{
-      width: 75px;
-      height: 75px;
-    }
 
+    .image {
+      width: 3rem;
+    }
   </style>
 
   <script type="text/javascript">
     $(document).ready(function () {
-
       document.getElementById("navbarDropdown").disabled = true;
-      
       toastr.options = {
         'closeButton': true,
         'positionClass': 'toast-top-right',
@@ -42,14 +39,11 @@
         'showMethod': 'fadeIn',
         'hideMethod': 'fadeOut',
       }
-
       $("#registerSubmit").click(function () {
         var username = $("#registerEmail").val();
         var password = $("#registerPassword").val();
         var organizationName = $("#organizationName").val();
-        document.getElementById("navbarDropdown").disabled = false; 
-
-
+        document.getElementById("navbarDropdown").disabled = false;
         if (null == username || username == '' || null == password || password == '' || null ==
           organizationName ||
           organizationName == '') {
@@ -65,7 +59,7 @@
           $('.modal-backdrop').remove();
           document.getElementById("registerDialog").style.visibility = "hidden";
           // Start for storing the user email for session management
-          sessionStorage.setItem("userName",username);
+          sessionStorage.setItem("userName", username);
           // End for storing the user email for session management   
           toastr.success("Registration Successful");
         }
@@ -93,10 +87,10 @@
             document.getElementById("userNameLabel").innerHTML = parsedLoginData[0].userEmail;
             document.getElementById("userNameLabel").style.color = "white";
             document.getElementById("userNameLabel").style.display = "block";
-            document.getElementById("navbarDropdown").disabled = false; 
+            document.getElementById("navbarDropdown").disabled = false;
 
             // Start for storing the user email for session management
-            sessionStorage.setItem("userName",parsedLoginData[0].userEmail);
+            sessionStorage.setItem("userName", parsedLoginData[0].userEmail);
             // End for storing the user email for session management
             toastr.success("User logged in successfully");
           } else {
@@ -112,13 +106,13 @@
         sessionStorage.removeItem("userName");
         document.getElementById("userNameLabel").style.display = "none";
         toastr.success("User loggged out successfully");
-        document.getElementById("loginDialog").style.visibility="initial";
-        document.getElementById("registerDialog").style.visibility="initial";
+        document.getElementById("loginDialog").style.visibility = "initial";
+        document.getElementById("registerDialog").style.visibility = "initial";
         $("#loginModal").add();
         $('.modal-backdrop').add();
         $("#registerModal").add();
-        $('.modal-backdrop').add();   
-        document.getElementById("navbarDropdown").disabled = true; 
+        $('.modal-backdrop').add();
+        document.getElementById("navbarDropdown").disabled = true;
       });
     });
 
@@ -127,8 +121,8 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-    <a href="/"><img class="image" src="/images/pronet-logo.png" alt="pronet logo" ></a>
-    <a class="navbar-brand" href="/">ProNet</a>
+    <a href="/"><img class="image" src="/images/pronet-logo.png" alt="pronet logo"></a>
+    <a class="navbar-brand" href="/">&ensp;ProNet</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -152,8 +146,8 @@
       <a class="nav-link" data-toggle="modal" id="loginDialog" href="#loginModal">Login</a>
       <label id="userNameLabel" style="display: none;"></label>
       <li class="nav-item dropdown" id="navDropDown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
           <a class="dropdown-item" id="submitLogout" href="#">Logout</a>
@@ -165,7 +159,8 @@
   <br><br>
 
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-3">
       <center>
         <div class="card" style="width: 18rem;">
           <img class="card-img-top"
@@ -194,7 +189,7 @@
         </div>
       </center>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <center>
         <div class="card" style="width: 18rem;">
           <img class="card-img-top" src="https://cdn1.iconfinder.com/data/icons/map-and-navigation-31/64/89-512.png"
@@ -208,6 +203,7 @@
         </div>
       </center>
     </div>
+    <div class="col-sm-1"></div>
   </div>
 
 

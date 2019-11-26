@@ -1,225 +1,222 @@
 <html>
-  <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script type="text/javascript">
-        $(document).ready(function () {
-          var userName = sessionStorage.getItem("userName");
-          document.getElementById("userNameLabel").innerHTML = userName;
-          document.getElementById("userNameLabel").style.color = "white";
-          document.getElementById("userNameLabel").style.display = "block";
-        });
-      </script>
-  </head>
-  <style>
-  .fa-power-off{
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var userName = sessionStorage.getItem("userName");
+      document.getElementById("userNameLabel").innerHTML = userName;
+      document.getElementById("userNameLabel").style.color = "white";
+      document.getElementById("userNameLabel").style.display = "block";
+    });
+  </script>
+</head>
+<style>
+  .fa-power-off {
     font-size: 3em;
   }
-
-.card{
-    background:  #343a40;
-    color: floralwhite;
-}
-.cardlist{
+  .card {
     background: #343a40;
-}
-
-
-.list-group-item.list-group-item-action.active{
+    color: floralwhite;
+  }
+  .cardlist {
+    background: #343a40;
+  }
+  .list-group-item.list-group-item-action.active {
     background: #343a40;
     border-color: #343a40;
-}
-.adddevice{
-        padding-left: 8px;
+  }
+  .adddevice {
+    padding-left: 8px;
     margin-left: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
     margin-top: 5px;
     padding-right: 8px;
-}
-.values{
+  }
+  .values {
     float: right;
-}
-
-.fa-trash{
+  }
+  .fa-trash {
     margin-top: 5px;
     font-size: medium;
     float: right;
-}
-.reddot {
-  height: 25px;
-  width: 25px;
-  background-color: #d9534f;
-  border-radius: 50%;
-  display: inline-block;
-  float: right;
-}
-.greendot {
-  height: 25px;
-  width: 25px;
-  background-color: #5cb85c;
-  border-radius: 50%;
-  display: inline-block;
-  float: right;
-}
-
-.yellowdot {
-  height: 25px;
-  width: 25px;
-  background-color: #f0ad4e;
-  border-radius: 50%;
-  display: inline-block;
-  float: right;
-}
-.image{
-      width: 75px;
-      height: 75px;
-    }
-.badge{
-float: right
-}
+  }
+  .reddot {
+    height: 25px;
+    width: 25px;
+    background-color: #d9534f;
+    border-radius: 50%;
+    display: inline-block;
+    float: right;
+  }
+  .greendot {
+    height: 25px;
+    width: 25px;
+    background-color: #5cb85c;
+    border-radius: 50%;
+    display: inline-block;
+    float: right;
+  }
+  .yellowdot {
+    height: 25px;
+    width: 25px;
+    background-color: #f0ad4e;
+    border-radius: 50%;
+    display: inline-block;
+    float: right;
+  }
+  .image {
+    width: 3rem;
+  }
+  .badge {
+    float: right
+  }
 </style>
- <script src="js/fetch_db.js"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/fetch_db.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
-        <a href="/"><img class="image" src="/images/pronet-logo.png" alt="pronet logo" ></a>
-        <a class="navbar-brand" href="/">ProNet</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/networkstatus">Network Status</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/device">Devices</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/geocoding">Geocoding</a>
-            </li>
-          </ul>
-        </div>
-        <!-- Start for code to add username for session management-->
-        <form class="form-inline my-2 my-lg-0 navbar-nav">
-          <label id="userNameLabel" style="display: none;"></label>
-        </form>
-        <!-- End for code to add username for session management-->
-      </nav>
-  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+    <a href="/"><img class="image" src="/images/pronet-logo.png" alt="pronet logo"></a>
+    <a class="navbar-brand" href="/">&ensp;ProNet</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/networkstatus">Network Status</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/device">Devices</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/geocoding">Geocoding</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Start for code to add username for session management-->
+    <form class="form-inline my-2 my-lg-0 navbar-nav">
+      <label id="userNameLabel" style="display: none;"></label>
+    </form>
+    <!-- End for code to add username for session management-->
+  </nav>
+
   <div class="float-right m-4">
-      <button class="btn btn-outline-dark adddevice" data-toggle="modal" data-target="#adddeviceModal"><i class="fas fa-plus"></i> Add Device</button>
+    <button class="btn btn-outline-dark adddevice" data-toggle="modal" data-target="#adddeviceModal"><i
+        class="fas fa-plus"></i> Add Device</button>
   </div>
   <div class="row">
-      <div class="col-sm-2"></div>
-  <div class="col-sm-4 m-4">
-    <div class="list-group" id="list-tab" role="tablist">
-       <script>
-                 var devices = fetch_alldevices();
-                 
-                  for (i = 0; i < devices.length; i++) {
-                    var obj = JSON.parse(JSON.stringify(devices[i]));
-                    if(i== 0){
-                         if(obj.status =="Active"){
-                     document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-success badge-pill">Active</span></a>');
-                   }
-                    if(obj.status == "Stopped"){
-                      document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
-                   }
-                    if(obj.status == "Disabled"){
-                      document.write('<a class="list-group-item list-group-item-action active" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-secondary badge-pill">Disabled</span></a>');
-                    }
-                    }
-                    else{
-                    if(obj.status =="Active"){
-                     document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-success badge-pill">Active</span></a>');
-                   }
-                    if(obj.status == "Stopped"){
-                      document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
-                   }
-                    if(obj.status == "Disabled"){
-                      document.write('<a class="list-group-item list-group-item-action" id="device'+obj.id+'-list" data-toggle="list" href="#device'+ obj.id +'" role="tab" aria-controls="home"><b>Device '+obj.id+'</b><span class="badge badge-secondary badge-pill">Disabled</span></a>');
-                    }
-                  }       
-              }          
-            </script>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4 m-4">
+      <div class="list-group" id="list-tab" role="tablist">
+        <script>
+          var devices = fetch_alldevices();
+
+          for (i = 0; i < devices.length; i++) {
+            var obj = JSON.parse(JSON.stringify(devices[i]));
+            if (i == 0) {
+              if (obj.status == "Active") {
+                document.write('<a class="list-group-item list-group-item-action active" id="device' + obj.id + '-list" data-toggle="list" href="#device' + obj.id + '" role="tab" aria-controls="home"><b>Device ' + obj.id + '</b><span class="badge badge-success badge-pill">Active</span></a>');
+              }
+              if (obj.status == "Stopped") {
+                document.write('<a class="list-group-item list-group-item-action active" id="device' + obj.id + '-list" data-toggle="list" href="#device' + obj.id + '" role="tab" aria-controls="home"><b>Device ' + obj.id + '</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
+              }
+              if (obj.status == "Disabled") {
+                document.write('<a class="list-group-item list-group-item-action active" id="device' + obj.id + '-list" data-toggle="list" href="#device' + obj.id + '" role="tab" aria-controls="home"><b>Device ' + obj.id + '</b><span class="badge badge-secondary badge-pill">Disabled</span></a>');
+              }
+            }
+            else {
+              if (obj.status == "Active") {
+                document.write('<a class="list-group-item list-group-item-action" id="device' + obj.id + '-list" data-toggle="list" href="#device' + obj.id + '" role="tab" aria-controls="home"><b>Device ' + obj.id + '</b><span class="badge badge-success badge-pill">Active</span></a>');
+              }
+              if (obj.status == "Stopped") {
+                document.write('<a class="list-group-item list-group-item-action" id="device' + obj.id + '-list" data-toggle="list" href="#device' + obj.id + '" role="tab" aria-controls="home"><b>Device ' + obj.id + '</b><span class="badge badge-danger badge-pill">Stopped</span></a>');
+              }
+              if (obj.status == "Disabled") {
+                document.write('<a class="list-group-item list-group-item-action" id="device' + obj.id + '-list" data-toggle="list" href="#device' + obj.id + '" role="tab" aria-controls="home"><b>Device ' + obj.id + '</b><span class="badge badge-secondary badge-pill">Disabled</span></a>');
+              }
+            }
+          }          
+        </script>
       </div>
-  </div>
+    </div>
     <div class="col-sm-4">
       <div class="tab-content" id="nav-tabContent">
-      <script>
-           var devices = fetch_alldevices();
-            for (i = 0; i < devices.length; i++) {
-                    var obj = JSON.parse(JSON.stringify(devices[i]));
-                    if( i == 0){
-                document.write('<div class="tab-pane fade show active" id="device'+obj.id+'" role="tabpanel" aria-labelledby="device'+obj.id+'-list">');
-                  document.write('<div class="card m-4" style="width: 20rem;">');
-                  document.write('<div class="card-body">');
-                  document.write('<h5 class="card-title">Device #'+obj.id+'<span><i class="fa fa-trash" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i></span></h5>');
-                  document.write('</div>'); 
-                  document.write('<ul class="list-group list-group-flush">');
-            document.write('<li class="list-group-item cardlist">Network<span class="values">'+ obj.nwname+' </span></li>');
-              document.write('<li class="list-group-item cardlist">IP Address<span class="values">'+ obj.ipadd+'</span></li>');
-              document.write('<li class="list-group-item cardlist">MAC Address<span class="values">'+obj.macadd +' </span></li>');
-            document.write(' <li class="list-group-item cardlist">Location<span class="values">'+obj.lati+" ,"+obj.longi+' </span></li>');
-              document.write('<li class="list-group-item cardlist">Connected Clients<span class="values">'+ obj.clients+' </span></li>');
-            document.write('</ul>');
-            document.write('<div class="card-body">');
+        <script>
+          var devices = fetch_alldevices();
+          for (i = 0; i < devices.length; i++) {
+            var obj = JSON.parse(JSON.stringify(devices[i]));
+            if (i == 0) {
+              document.write('<div class="tab-pane fade show active" id="device' + obj.id + '" role="tabpanel" aria-labelledby="device' + obj.id + '-list">');
+              document.write('<div class="card m-4" style="width: 20rem;">');
+              document.write('<div class="card-body">');
+              document.write('<h5 class="card-title">Device #' + obj.id + '<span><i class="fa fa-trash" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i></span></h5>');
+              document.write('</div>');
+              document.write('<ul class="list-group list-group-flush">');
+              document.write('<li class="list-group-item cardlist">Network<span class="values">' + obj.nwname + ' </span></li>');
+              document.write('<li class="list-group-item cardlist">IP Address<span class="values">' + obj.ipadd + '</span></li>');
+              document.write('<li class="list-group-item cardlist">MAC Address<span class="values">' + obj.macadd + ' </span></li>');
+              document.write(' <li class="list-group-item cardlist">Location<span class="values">' + obj.lati + " ," + obj.longi + ' </span></li>');
+              document.write('<li class="list-group-item cardlist">Connected Clients<span class="values">' + obj.clients + ' </span></li>');
+              document.write('</ul>');
+              document.write('<div class="card-body">');
               document.write('<div class="row">');
               document.write('<div class="col-4"><button type="button" class="btn btn-outline-light">Power</button></div>');
-            document.write(' <div class="col-4"><button type="button" class="btn btn-outline-light">Reboot</button></div>');
+              document.write(' <div class="col-4"><button type="button" class="btn btn-outline-light">Reboot</button></div>');
               document.write('<div class="col-4"><button type="button" class="btn btn-outline-light">Reset</button></div>');
               document.write('</div>');
-                document.write('</div>');
-                document.write('</div>');
-                document.write('</div>');
-                    }
-                    else{
-                      document.write('<div class="tab-pane fade show" id="device'+obj.id+'" role="tabpanel" aria-labelledby="device'+obj.id+'-list">');
-        document.write('<div class="card m-4" style="width: 20rem;">');
-        document.write('<div class="card-body">');
-        document.write('<h5 class="card-title">Device #'+obj.id+'<span><i class="fa fa-trash" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i></span></h5>');
-        document.write('</div>'); 
-        document.write('<ul class="list-group list-group-flush">');
-   document.write('<li class="list-group-item cardlist">Network<span class="values">'+ obj.nwname+' </span></li>');
-    document.write('<li class="list-group-item cardlist">IP Address<span class="values">'+ obj.ipadd+'</span></li>');
-    document.write('<li class="list-group-item cardlist">MAC Address<span class="values">'+obj.macadd +' </span></li>');
-   document.write(' <li class="list-group-item cardlist">Location<span class="values">'+obj.lati+" ,"+obj.longi+' </span></li>');
-     document.write('<li class="list-group-item cardlist">Connected Clients<span class="values">'+ obj.clients+' </span></li>');
-  document.write('</ul>');
-  document.write('<div class="card-body">');
-    document.write('<div class="row">');
-    document.write('<div class="col-4"><button type="button" class="btn btn-outline-light">Power</button></div>');
-   document.write(' <div class="col-4"><button type="button" class="btn btn-outline-light">Reboot</button></div>');
-    document.write('<div class="col-4"><button type="button" class="btn btn-outline-light">Reset</button></div>');
-    document.write('</div>');
-      document.write('</div>');
-      document.write('</div>');
-      document.write('</div>');
-                    }
-                  
-                  }
-        
+              document.write('</div>');
+              document.write('</div>');
+              document.write('</div>');
+            }
+            else {
+              document.write('<div class="tab-pane fade show" id="device' + obj.id + '" role="tabpanel" aria-labelledby="device' + obj.id + '-list">');
+              document.write('<div class="card m-4" style="width: 20rem;">');
+              document.write('<div class="card-body">');
+              document.write('<h5 class="card-title">Device #' + obj.id + '<span><i class="fa fa-trash" data-toggle="modal" data-target="#myModal" aria-hidden="true"></i></span></h5>');
+              document.write('</div>');
+              document.write('<ul class="list-group list-group-flush">');
+              document.write('<li class="list-group-item cardlist">Network<span class="values">' + obj.nwname + ' </span></li>');
+              document.write('<li class="list-group-item cardlist">IP Address<span class="values">' + obj.ipadd + '</span></li>');
+              document.write('<li class="list-group-item cardlist">MAC Address<span class="values">' + obj.macadd + ' </span></li>');
+              document.write(' <li class="list-group-item cardlist">Location<span class="values">' + obj.lati + " ," + obj.longi + ' </span></li>');
+              document.write('<li class="list-group-item cardlist">Connected Clients<span class="values">' + obj.clients + ' </span></li>');
+              document.write('</ul>');
+              document.write('<div class="card-body">');
+              document.write('<div class="row">');
+              document.write('<div class="col-4"><button type="button" class="btn btn-outline-light">Power</button></div>');
+              document.write(' <div class="col-4"><button type="button" class="btn btn-outline-light">Reboot</button></div>');
+              document.write('<div class="col-4"><button type="button" class="btn btn-outline-light">Reset</button></div>');
+              document.write('</div>');
+              document.write('</div>');
+              document.write('</div>');
+              document.write('</div>');
+            }
+
+          }
+
         </script>
-     
-  <!-- <img src="..." class="card-img-top" alt="..."> -->
-     </div>
+
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+      </div>
+    </div>
   </div>
-</div>
-  
+
 
   <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
-      
+
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Do you want to remove this device?</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-       
-        
+
+
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
@@ -231,47 +228,48 @@ float: right
   <div class="modal" id="adddeviceModal">
     <div class="modal-dialog">
       <div class="modal-content">
-      
+
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Add a device</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-        <form>
-          <div class="form-group">
-    <label for="exampleInputEmail1">Name</label>
-    <input type="text" class="form-control" id="devicename" aria-describedby="emailHelp" placeholder="Enter device name">
-    </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Network</label>
-    <input type="text" class="form-control" id="network" aria-describedby="emailHelp" placeholder="Enter Network name">
-    </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">IP Address</label>
-    <input type="text" class="form-control" id="ipaddr" placeholder="Enter IP Address">
-  </div>
-   <div class="form-group">
-    <label for="exampleInputPassword1">MAC Address</label>
-    <input type="text" class="form-control" id="macaddr" placeholder="Enter MAC Address">
-  </div>
-   <div class="form-group">
-    <label for="exampleInputPassword1">Location</label>
-    <input type="text" class="form-control" id="location" placeholder="Enter co-ordinates">
-  </div>
- 
-</form>
-      </div>
-       
-        
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="text" class="form-control" id="devicename" aria-describedby="emailHelp"
+                placeholder="Enter device name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Network</label>
+              <input type="text" class="form-control" id="network" aria-describedby="emailHelp"
+                placeholder="Enter Network name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">IP Address</label>
+              <input type="text" class="form-control" id="ipaddr" placeholder="Enter IP Address">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">MAC Address</label>
+              <input type="text" class="form-control" id="macaddr" placeholder="Enter MAC Address">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Location</label>
+              <input type="text" class="form-control" id="location" placeholder="Enter co-ordinates">
+            </div>
+
+          </form>
+        </div>
+
+
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-success" onClick="add_device()" data-dismiss="modal">Save</button>
- 
+
         </div>
       </div>
     </div>
   </div>
 </body>
-
 </html>
