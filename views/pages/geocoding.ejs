@@ -1,3 +1,10 @@
+<!-- 
+    References:
+    https://getbootstrap.com/docs/4.3/components/collapse/
+    https://developers.google.com/maps/documentation/embed/guide
+    https://developers.google.com/maps/documentation/javascript/shapes#polylines
+ -->
+
 <html>
 
 <head>
@@ -22,7 +29,9 @@
 
         .values {
             float: right;
+            font-style: italic;
         }
+
         .btn-link {
             color: #203244;
         }
@@ -62,13 +71,14 @@
                         document.write('<div class="card-header" id="device' + obj.id + '">');
                         document.write('<h2 class="mb-0">');
                         document.write('<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#device' + obj.id + '"aria-expanded="false" aria-controls="device' + obj.id + '">');
-                        document.write('<b>Device ' + obj.id+'</b>');
+                        document.write('<b>Device ' + obj.id + '</b>');
                         document.write('</button>');
                         document.write('</h2>');
                         document.write('</div>');
                         document.write('<div id="device' + obj.id + '" class="collapse" aria-labelledby="heading' + obj.id + '" data-parent="#accordionDevices">');
                         document.write('<div class="card-body">');
-                        document.write('<p>Location<span class="values">' + obj.lati + ", " + obj.longi + ' </span></br>');
+                        document.write('<p>Location:<span class="values">' + obj.lati + ", " + obj.longi + ' </span></br>');
+                        document.write('<p>Network:<span class="values">' + obj.nwname + ' </span></br>');
                         document.write('<center><button onclick="initMap(' + obj.lati + ', ' + obj.longi + ')" type="button" class="btn btn-primary mr-sm-2 mb-sm-2">' + 'See on Map' + '</button></center>');
                         document.write('</div>');
                         document.write('</div>');
@@ -82,20 +92,73 @@
         <div class="col-sm-6">
             <br>
             <div class="row">
-                <h4>Located Device</h4>
+                <h4 id="map-text">Grid Coverage</h4>
                 <div id="map"></div>
                 <script>
                     function initMap(x, y) {
-                        var uluru = { lat: x, lng: y };
-                        var map = new google.maps.Map(
-                            document.getElementById('map'), { zoom: 13, center: uluru });
-                        var marker = new google.maps.Marker({ position: uluru, map: map });
+                        if (x != null && y != null) {
+                            document.getElementById('map-text').innerHTML = 'Device Information';
+                            var uluru = { lat: x, lng: y };
+                            var map = new google.maps.Map(
+                                document.getElementById('map'), {
+                                    zoom: 13,
+                                    center: uluru,
+                                    streetViewControl: false,
+                                    disableDefaultUI: true,
+                                });
+                            var marker = new google.maps.Marker({ position: uluru, map: map });
+                        }
+                        else {
+                            document.getElementById('map-text').innerHTML = 'Grid Coverage';
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 9,
+                                streetViewControl: false,
+                                center: { lat: 44.546341, lng: -64.242798 },
+                                disableDefaultUI: true,
+                            });
+
+                            // Define the LatLng coordinates for the polygon's path.
+
+                            var devices = fetch_alldevices();
+                            var geolati = new Array();
+                            var geolongi = new Array();
+
+                            for (i = 0; i < devices.length; i++) {
+                                var obj = JSON.parse(JSON.stringify(devices[i])); {
+                                    geolati.push(parseFloat(obj.lati));
+                                    geolongi.push(parseFloat(obj.longi));
+                                }
+                            }
+
+                            var triangleCoords = [
+                                { lat: geolati[0], lng: geolongi[0] },
+                                { lat: geolati[1], lng: geolongi[1] },
+                                { lat: geolati[2], lng: geolongi[2] },
+                                { lat: geolati[3], lng: geolongi[3] },
+                                { lat: geolati[4], lng: geolongi[4] },
+                                { lat: geolati[5], lng: geolongi[5] },
+                                { lat: geolati[6], lng: geolongi[6] },
+                                { lat: geolati[7], lng: geolongi[7] },
+                            ];
+
+                            // Construct the polygon.
+                            var grid = new google.maps.Polygon({
+                                paths: triangleCoords,
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: '#FF0000',
+                                fillOpacity: 0.25
+                            });
+                            grid.setMap(map);
+                        }
                     }
                 </script>
                 <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwv5JTuqQnKO-3eHRGNXcbUOxmuh6KsRA&callback=initMap">
                     </script>
             </div>
+            <center><br><button onclick='initMap()' type='button' class='btn btn-primary mr-sm-2 mb-sm-2'>See Grid Coverage</button></center>
         </div>
     </div>
 </body>
