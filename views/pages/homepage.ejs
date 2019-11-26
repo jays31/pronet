@@ -5,12 +5,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-	<style type="text/css">
-		#success{background: green;}
-		#error{background: red;}
-	</style>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+  </script>
+  <style type="text/css">
+    #success {
+      background: green;
+    }
+
+    #error {
+      background: red;
+    }
+
+  </style>
 
   <script type="text/javascript">
     $(document).ready(function () {
@@ -27,22 +35,31 @@
         'showMethod': 'fadeIn',
         'hideMethod': 'fadeOut',
       }
-      
+
       $("#registerSubmit").click(function () {
         var username = $("#registerEmail").val();
         var password = $("#registerPassword").val();
         var organizationName = $("#organizationName").val();
 
-        var postURL =
-          "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
-          "&userOrganizationName=" + organizationName;
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", postURL, false);
-        xmlHttp.send(null);
-        $("#registerModal").remove();
-        $('.modal-backdrop').remove();
-        document.getElementById("registerDialog").style.visibility = "hidden";
-        toastr.success("Registration Successful");
+        if (null == username || username == '' || null == password || password == '' || null ==
+          organizationName ||
+          organizationName == '') {
+          toastr.error("Please fill the mandatory fields");
+        } else {
+          var postURL =
+            "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
+            "&userOrganizationName=" + organizationName;
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open("POST", postURL, false);
+          xmlHttp.send(null);
+          $("#registerModal").remove();
+          $('.modal-backdrop').remove();
+          document.getElementById("registerDialog").style.visibility = "hidden";
+          // Start for storing the user email for session management
+          sessionStorage.setItem("userName",username);
+          // End for storing the user email for session management   
+          toastr.success("Registration Successful");
+        }
       });
 
       $("#loginSubmit").click(function () {
@@ -67,6 +84,9 @@
             document.getElementById("userNameLabel").innerHTML = parsedLoginData[0].userEmail;
             document.getElementById("userNameLabel").style.color = "white";
             document.getElementById("userNameLabel").style.display = "block";
+            // Start for storing the user email for session management
+            sessionStorage.setItem("userName",parsedLoginData[0].userEmail);
+            // End for storing the user email for session management
             toastr.success("User logged in successfully");
           } else {
             toastr.error("Invalid Login");
@@ -77,6 +97,7 @@
 
       });
     });
+
   </script>
 </head>
 
@@ -101,7 +122,7 @@
       </ul>
     </div>
     <!-- Start for code to add login and register feature-->
-    <form class="form-inline my-2 my-lg-0 navbar-nav" id="loginRegForm">  
+    <form class="form-inline my-2 my-lg-0 navbar-nav" id="loginRegForm">
       <a class="nav-link" data-toggle="modal" id="registerDialog" href="#registerModal">Register</a>
       <a class="nav-link" data-toggle="modal" id="loginDialog" href="#loginModal">Login</a>
       <label id="userNameLabel" style="display: none;">Test</label>
