@@ -22,31 +22,17 @@
     <style>
         /* Set the size of the div element that contains the map */
         #map {
-            height: 400px;
+            height: 500px;
             /* The height is 400 pixels */
             width: 100%;
             /* The width is the width of the web page */
         }
 
-        .card {
-            background: #343a40;
-            color: rgb(255, 255, 255);
-        }
-
-        .cardlist {
-            background: #242525;
-        }
-
         .values {
             float: right;
         }
-
-        iframe:focus {
-            outline: none;
-        }
-
-        iframe[seamless] {
-            display: block;
+        .btn-link {
+            color: #203244;
         }
     </style>
 </head>
@@ -81,39 +67,47 @@
         <div class="col-sm-1"></div>
         <div class="col-sm-3">
             <script>
+                document.write('<br><br><div class="accordion" id="accordionDevices">');
                 var devices = fetch_alldevices();
                 for (i = 0; i < devices.length; i++) {
                     var obj = JSON.parse(JSON.stringify(devices[i])); {
-                        document.write('<div class="tab-pane fade show" id="device' + obj.id + '" role="tabpanel" aria-labelledby="device' + obj.id + '-list">');
-                        document.write('<div class="card m-4" style="width: 20rem;">');
-                        document.write('<div class="card-body">');
-                        document.write('<h7 class="card-title">Device ' + obj.id + '</h7><br>');
+                        document.write('<div class="card">');
+                        document.write('<div class="card-header" id="device' + obj.id + '">');
+                        document.write('<h2 class="mb-0">');
+                        document.write('<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#device' + obj.id + '"aria-expanded="false" aria-controls="device' + obj.id + '">');
+                        document.write('<b>Device ' + obj.id+'</b>');
+                        document.write('</button>');
+                        document.write('</h2>');
                         document.write('</div>');
-                        document.write(' <li class="list-group-item cardlist">Location<span class="values">' + obj.lati + ", " + obj.longi + ' </span></br>');
-                        document.write('<br><center><button onclick="initMap(' + obj.lati + ', ' + obj.longi + ')" type="button" class="btn btn-primary mr-sm-2 mb-sm-2">' + 'See on Map' + '</button></center></li>');
+                        document.write('<div id="device' + obj.id + '" class="collapse" aria-labelledby="heading' + obj.id + '" data-parent="#accordionDevices">');
+                        document.write('<div class="card-body">');
+                        document.write('<p>Location<span class="values">' + obj.lati + ", " + obj.longi + ' </span></br>');
+                        document.write('<center><button onclick="initMap(' + obj.lati + ', ' + obj.longi + ')" type="button" class="btn btn-primary mr-sm-2 mb-sm-2">' + 'See on Map' + '</button></center>');
+                        document.write('</div>');
                         document.write('</div>');
                         document.write('</div>');
                     }
                 }
+                document.write('</div>')
             </script>
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-6">
             <br>
             <div class="row">
-                    <h4>Located Device</h4>
-                    <div id="map"></div>
-                    <script>
-                        function initMap(x,y) {
-                            var uluru = { lat: x, lng: y };
-                            var map = new google.maps.Map(
-                                document.getElementById('map'), { zoom: 15, center: uluru });
-                            var marker = new google.maps.Marker({ position: uluru, map: map });
-                        }
+                <h4>Located Device</h4>
+                <div id="map"></div>
+                <script>
+                    function initMap(x, y) {
+                        var uluru = { lat: x, lng: y };
+                        var map = new google.maps.Map(
+                            document.getElementById('map'), { zoom: 13, center: uluru });
+                        var marker = new google.maps.Marker({ position: uluru, map: map });
+                    }
+                </script>
+                <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwv5JTuqQnKO-3eHRGNXcbUOxmuh6KsRA&callback=initMap">
                     </script>
-                    <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwv5JTuqQnKO-3eHRGNXcbUOxmuh6KsRA&callback=initMap">
-                        </script>
             </div>
         </div>
     </div>
