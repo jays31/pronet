@@ -1,5 +1,5 @@
 function fetch_ipadd(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -10,7 +10,7 @@ function fetch_ipadd(grid) {
 }
 
 function fetch_macadd(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -21,7 +21,7 @@ function fetch_macadd(grid) {
 }
 
 function fetch_lati(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -32,7 +32,7 @@ function fetch_lati(grid) {
 }
 
 function fetch_longi(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -43,7 +43,7 @@ function fetch_longi(grid) {
 }
 
 function fetch_clients(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -54,7 +54,7 @@ function fetch_clients(grid) {
 }
 
 function fetch_status(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -65,7 +65,7 @@ function fetch_status(grid) {
 }
 
 function fetch_nwname(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -77,7 +77,7 @@ function fetch_nwname(grid) {
 
 function fetch_deviceband(grid) {
     console.log("entered");
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -88,8 +88,8 @@ function fetch_deviceband(grid) {
     return (deviceband)
 }
 function fetch_nwband(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;var total =0;
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;var total =0;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -105,7 +105,7 @@ function fetch_nwband(grid) {
     return (total.toFixed(2))
 }
 function fetch_traffic(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -123,7 +123,7 @@ function fetch_traffic(grid) {
     return (count)
 }
 function fetch_totaldevices(grid) {
-    var geturl = "http://localhost:1337/devices?nwname=grid" + grid;
+    var geturl = "https://pronet.azurewebsites.net/devices?nwname=grid" + grid;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -134,7 +134,7 @@ function fetch_totaldevices(grid) {
 }
 
 function fetch_alldevices() {    
-    var geturl = "http://localhost:1337/devices";
+    var geturl = "https://pronet.azurewebsites.net/devices";
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", geturl, false); // false for synchronous request
     xmlHttp.send(null);
@@ -151,7 +151,7 @@ function add_device(){
    var macaddr = document.getElementById("macaddr").value;
    var location = document.getElementById("location").value;
    var locarr = location.split(',');
-   var url = "http://localhost:1337/devices";
+   var url = "https://pronet.azurewebsites.net/devices";
    var xmlHttp = new XMLHttpRequest();
    xmlHttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {

@@ -50,7 +50,7 @@
           toastr.error("Please fill the mandatory fields");
         } else {
           var postURL =
-            "http://localhost:1337/user?userEmail=" + username + "&userPassword=" + password +
+            "https://pronet.azurewebsites.net/user?userEmail=" + username + "&userPassword=" + password +
             "&userOrganizationName=" + organizationName;
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.open("POST", postURL, false);
@@ -71,7 +71,7 @@
         var organizationName = $("#organizationName").val();
 
         var getURL =
-          "http://localhost:1337/user/find?userEmail=" + loginUserName + "&&userPassword=" + loginPassword;
+          "https://pronet.azurewebsites.net/user/find?userEmail=" + loginUserName + "&&userPassword=" + loginPassword;
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", getURL, false);
         xmlHttp.send(null);
