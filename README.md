@@ -1,26 +1,29 @@
 # pronet
+Deployment link: https://pronet.azurewebsites.net/
 
-a [Sails v1](https://sailsjs.com) application
+ProNet is a [Sails v1](https://sailsjs.com) application. Hosted using Microsoft Azure's App Service and configured with a Docker Container. The web app has been developed using Sails.js MVC framework with Bootstrap.
 
+### Version info
+This app was originally generated on Sat Nov 16 2019 15:06:28 GMT-0400 (Atlantic Standard Time) using Sails v1.2.3.
 
-### Links
+### Updating Docker container
+Clone the project via HTTPS from https://git.cs.dal.ca/jays/pronet.git 
+```> cd pronet```
+```> docker login```
+```> docker build -t jaysharma95/pronet .```
+```> docker run -it --rm -p 1337:1337 jaysharma95/pronet```
+```> docker push jaysharma95/pronet```
+Azure has an App Service named ‘pronet’ which must now be stopped and started again for the deployment to take effect. The app service is linked to DockerHub’s repository and shall update automatically.
 
+### Accessing MySQL for Azure
+Open MySQL Workbench on your computer and configure a new connection as:
+Server/Host name: ```dal-fcs.mysql.database.azure.com```
+Server admin login name: ```jays@dal-fcs```
+Password: ```Test1234```
+Port number: ```3306```
+Schema: ```pronet ```
+
+### References
 + [Sails framework documentation](https://sailsjs.com/get-started)
 + [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
 + [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
-+ [Community support options](https://sailsjs.com/support)
-+ [Professional / enterprise options](https://sailsjs.com/enterprise)
-
-
-### Version info
-
-This app was originally generated on Sat Nov 16 2019 15:06:28 GMT-0400 (Atlantic Standard Time) using Sails v1.2.3.
-
-<!-- Internally, Sails used [`sails-generate@1.16.13`](https://github.com/balderdashy/sails-generate/tree/v1.16.13/lib/core-generators/new). -->
-
-
-
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
-
