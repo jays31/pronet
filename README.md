@@ -3,6 +3,13 @@ Deployment link: https://pronet.azurewebsites.net/
 
 ProNet is a [Sails v1](https://sailsjs.com) application. Hosted using Microsoft Azure's App Service and configured with a Docker Container. The web app has been developed using Sails.js MVC framework with Bootstrap.
 
+### Team Members
+1. Abhinandan Walia - B00820613
+2. Jay Sharma - B00824331
+3. Manpreet Singh - B00821998
+4. Aishwarya Narayanan - B00820313)
+5. Vishaali Srikanth - B00821049
+
 ### Updating Docker container
 Clone the project via HTTPS from https://git.cs.dal.ca/jays/pronet.git 
 ```> cd pronet```
